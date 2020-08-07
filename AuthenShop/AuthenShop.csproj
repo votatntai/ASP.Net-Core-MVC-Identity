@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-AuthenShop-7E378844-4F74-4664-B51A-8742E1BCF607</UserSecretsId>
-    <StartupObject>AuthenShop.Program</StartupObject>
+    <StartupObject></StartupObject>
     <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
   </PropertyGroup>
 

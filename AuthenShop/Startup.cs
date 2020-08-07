@@ -76,7 +76,6 @@ namespace AuthenShop
 
             app.UseRouting();
 
-            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
