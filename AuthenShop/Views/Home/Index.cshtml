@@ -34,10 +34,10 @@
                 <div class="col-md-4 probootstrap-animate mt-5">
                     <div class="probootstrap-card h-100 with-hover">
                         <div class="probootstrap-card-media">
-                            <a asp-action="Details" asp-route-id="@item.Id"><img src="~/img/@item.Image" class="img-responsive img-border"></a>
+                            <a asp-action="Details" asp-controller="Shoes" asp-route-id="@item.Id"><img src="~/img/@item.Image" class="img-responsive img-border"></a>
                         </div>
                         <div class="probootstrap-card-text">
-                            <h4 class="card-title"><a asp-action="Details" asp-controller="Clothes" asp-route-id="@item.Id">@item.Title</a></h4>
+                            <h4 class="card-title"><a asp-action="Details" asp-controller="Shoes" asp-route-id="@item.Id">@item.Title</a></h4>
                             <h5 class="price">@item.Price.ToString("n0")</h5>
                             <p class="card-text">@item.Description</p>
                         </div>

@@ -7,7 +7,7 @@ a:focus, a:hover {
     text-decoration: none !important;
 }
 
-form ul {
+ul {
     padding: 0;
     list-style-type: none;
 }
