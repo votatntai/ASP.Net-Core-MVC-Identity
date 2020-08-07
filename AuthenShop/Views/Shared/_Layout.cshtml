@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AuthenShop</title>
+    <link rel="stylesheet" href="~/css/sweetalert2.min.css" />
+    <link rel="stylesheet" href="/virb/css/styles-merged.css">
+    <link rel="stylesheet" href="/virb/css/style.min.css">
+    <link rel="stylesheet" href="/virb/css/custom.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <div class="probootstrap-loader"></div>
+
+    <section class="probootstrap-slider flexslider">
+        <ul class="slides">
+            <li style="background-image: url('https://www.upsieutoc.com/images/2020/08/06/slider_1.jpg');" class="overlay2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="slides-text probootstrap-animate" data-animate-effect="fadeIn">
+                                <h2>Account</h2>
+                                <p>
+                                    Free HTML5 Template by <a href="https://uicookies.com/" target="_blank">uicookies.com</a>
+                                    . Far far away, behind the word mountains, far from the countries.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <header role="banner" class="probootstrap-header">
+        <div class="container">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="probootstrap-logo">JLS</a>
+
+            <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
+            <div class="mobile-menu-overlay"></div>
+
+            <nav role="navigation" class="probootstrap-nav hidden-xs">
+                <ul class="probootstrap-main-nav">
+                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Clothes" asp-action="Index">Clothes</a></li>
+                    <li><a asp-area="" asp-controller="Shoes" asp-action="Index">Shoes</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul class="probootstrap-right-nav hidden-xs">
+                    <partial name="_LoginPartial" />
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                    <li><a href="#"><i class="icon-instagram2"></i></a></li>
+                </ul>
+                <div class="extra-text visible-xs">
+                    <a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>
+                    <h5>Account</h5>
+                    <ul class="probootstrap-sub-nav">
+                        <partial name="_LoginPartial" />
+                    </ul>
+                    <h5>Connect</h5>
+                    <ul class="social-buttons">
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                        <li><a href="#"><i class="icon-instagram2"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="content">
+        @RenderBody()
+    </main>
+
+    <footer class="probootstrap-footer probootstrap-bg">
+        <div class="container">
+            <div class="col-md-4">
+                <ul>
+                    <li>Lorem ipsum dolar</li>
+                    <li>Lorem ipsum dolar</li>
+                    <li>Lorem ipsum dolar</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li>Lorem ipsum dolar</li>
+                    <li>Lorem ipsum dolar</li>
+                    <li>Lorem ipsum dolar</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li>Lorem ipsum dolar</li>
+                    <li>Lorem ipsum dolar</li>
+                    <li>Lorem ipsum dolar</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/sweetalert2.all.min.js"></script>
+    <script src="~/virb/js/scripts.min.js"></script>
+    <script src="~/virb/js/main.min.js"></script>
+    <script src="~/virb/js/custom.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
