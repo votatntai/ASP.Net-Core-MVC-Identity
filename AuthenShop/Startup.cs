@@ -1,6 +1,7 @@
 using AuthenShop.Data;
 using AuthenShop.Models;
 using AuthenShop.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
