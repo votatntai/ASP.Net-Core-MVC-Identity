@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuthenShop.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
