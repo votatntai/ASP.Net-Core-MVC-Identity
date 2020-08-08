@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AuthenShop.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AuthenShop.Entities;
-using AuthenShop.Models;
 
 namespace AuthenShop.Data
 {

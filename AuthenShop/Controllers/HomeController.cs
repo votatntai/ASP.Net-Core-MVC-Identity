@@ -4,11 +4,10 @@ using AuthenShop.Models;
 using AuthenShop.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AuthenShop.Controllers
 {
