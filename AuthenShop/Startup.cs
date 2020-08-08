@@ -49,11 +49,11 @@ namespace AuthenShop
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddAuthentication(IISDefaults.AuthenticationScheme)
+            services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = Configuration["Authentication:Google:ClientId"];
-                    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                    options.ClientId = "91267503784-0crin32462b0u1oveh0vafogonjim8fq.apps.googleusercontent.com";
+                    options.ClientSecret = "haOBlOM2LN7Divg5dM46qcjH";
                 });
             services.AddTransient<IEmailSender, SendMail>();
         }
@@ -75,7 +75,7 @@ namespace AuthenShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseRouting();
 
