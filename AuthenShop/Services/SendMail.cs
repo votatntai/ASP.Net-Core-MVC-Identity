@@ -12,14 +12,13 @@ namespace AuthenShop.Services
             var client = new SmtpClient("smtp.gmail.com")
             {
                 UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("votantai4899@gmail.com", "Tai01639505022"),
                 EnableSsl = true,
                 Port = 587,
-                Credentials = new NetworkCredential("votantai4899@gmail.com", "Tai01639505022")
+                DeliveryMethod = SmtpDeliveryMethod.Network
             };
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress("JangleeShop@gmail.com")
-            };
+            var mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("Jshop@gmail.com");
             mailMessage.To.Add(email);
             mailMessage.Subject = subject;
             mailMessage.Body = htmlMessage;
