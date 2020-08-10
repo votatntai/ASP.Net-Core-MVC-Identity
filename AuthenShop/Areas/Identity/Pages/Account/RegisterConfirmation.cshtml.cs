@@ -55,7 +55,6 @@ namespace AuthenShop.Areas.Identity.Pages.Account
                     values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                     protocol: Request.Scheme);
             }
-
             return Page();
         }
     }

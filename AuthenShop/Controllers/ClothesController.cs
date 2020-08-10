@@ -1,6 +1,7 @@
 ﻿using AuthenShop.Data;
 using AuthenShop.Entities;
 using AuthenShop.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace AuthenShop.Controllers
 {
+    [Authorize(Roles = "Admin, Manager, Seller")]
     public class ClothesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -18,6 +20,7 @@ namespace AuthenShop.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: Clothes
         public async Task<IActionResult> Index(string currentFilter, string searchString, int? pageNumber)
         {
@@ -42,6 +45,7 @@ namespace AuthenShop.Controllers
             return View(await PaginatedList<Product>.CreateAsync(clothes.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
+        [AllowAnonymous]
         // GET: Clothes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
