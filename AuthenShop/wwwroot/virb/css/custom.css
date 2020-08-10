@@ -93,3 +93,11 @@ button:focus {
 .probootstrap-form {
     margin-bottom: 0;
 }
+
+footer ul li a:hover {
+    text-decoration: none;
+}
+
+footer i {
+    font-size: x-large;
+}
