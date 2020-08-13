@@ -1,54 +1,65 @@
 ﻿@model AuthenShop.Entities.Product
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Clothes</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="container my-5">
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-5">
+                <article>
+                    <div class="text-center my-5">
+                        <a href="#"><img src="~/img/@Model.Image" style="width:85%"></a>
+                    </div>
+                </article>
+            </aside>
+            <aside class="col-sm-7">
+                <article class="card-body p-5">
+                    <h3 class="title mb-3">@Model.Title</h3>
+                    <p class="price-detail-wrap">
+                        <span class="price h3 text-warning">
+                            <span class="currency">@Model.Price.ToString("n0")</span><span class="num"> VNĐ</span>
+                        </span>
+                    </p>
+                    <dl class="item-property">
+                        <dt>Description</dt>
+                        <dd>
+                            <p>
+                                @Model.Description
+                            </p>
+                        </dd>
+                    </dl>
+                    <dl class="param param-feature">
+                        <dd>
+                            @if (Model.Status)
+                            {
+                                <small class="btn btn-sm btn-outline-success">Còn hàng</small>
+                            }
+                            else
+                            {
+                                <small class="btn btn-sm btn-outline-danger">Tạm hết</small>
+                            }
+                        </dd>
+                    </dl>
+                    <dl class="param param-feature">
+                        <dt>Delivery</dt>
+                        <dd>Russia, USA, and Europe</dd>
+                    </dl>
+                    <button type="submit" class="btn btn btn-primary text-uppercase">Buy now</button>
+                    <a href="#" class="btn btn btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i>Add to cart</a>
+                </article>
+            </aside>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Manager"))
+        {
+            <a class="btn btn btn-outline-danger text-uppercase" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        }
+        <a class="btn btn btn-outline-dark text-uppercase" asp-action="Index">Back to List</a>
+    </div>
 </div>
