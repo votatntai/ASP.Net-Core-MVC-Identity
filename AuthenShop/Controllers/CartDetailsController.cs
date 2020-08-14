@@ -107,27 +107,8 @@ namespace AuthenShop.Controllers
             return View(cartDetail);
         }
 
-        // GET: CartDetails/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cartDetail = await _context.CartDetail
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cartDetail == null)
-            {
-                return NotFound();
-            }
-
-            return View(cartDetail);
-        }
-
         // POST: CartDetails/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cartDetail = await _context.CartDetail.FindAsync(id);

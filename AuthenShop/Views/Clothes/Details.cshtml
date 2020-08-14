@@ -49,7 +49,7 @@
                         <dt>Delivery</dt>
                         <dd>Russia, USA, and Europe</dd>
                     </dl>
-                    <form asp-action="Create" asp-controller="CartDetails" id="add-to-cart" style="display: inline">
+                    <form asp-action="Create" asp-controller="CartDetails" class="add-to-cart" style="display: inline">
                         <input type="hidden" name="Email" value="@User.Identity.Name" />
                         <input type="hidden" name="ProductId" value="@Model.Id" />
                         <input type="hidden" name="Quantity" value="1" />

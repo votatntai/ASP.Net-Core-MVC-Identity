@@ -80,7 +80,7 @@ $(function () {
 
 //Add To Cart
 $(function () {
-    let form = $("#add-to-cart");
+    let form = $(".add-to-cart");
     form.on('submit', function (e) {
         e.preventDefault();
         let url = form.attr("action");
@@ -90,19 +90,23 @@ $(function () {
             url: url,
             data: data,
             success: function (res, text, xhr) {
-                if (xhr.status === 200) {
-                    if (xhr.responseText.includes("Success")) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Successful',
-                            text: 'This product has been added to your cart',
-                            confirmButtonText: 'Continue',
-                            scrollbarPadding: false,
-                        });
-                    }
+                if (xhr.responseText.includes("Success")) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'This product has been added to your cart',
+                        confirmButtonText: 'Continue',
+                        scrollbarPadding: false,
+                    });
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
+            error: function (res, text, xhr) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sorry',
+                    text: 'You must be logged in to purchase',
+                    scrollbarPadding: false,
+                });
             }
         });
     });
@@ -118,22 +122,20 @@ $(function () {
             url: url,
             dataType: "json",
             success: function (res, text, xhr) {
-                console.log(res);
                 const table = $(".render-product");
                 let content = "";
                 let total = 0;
                 for (var i = 0; i < res.length; i++) {
-                    const row = ` <tr>
+                    const row = ` <tr class="cart-item">
                             <td class="w-25">
                                 <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/vans.png" class="img-fluid img-thumbnail" alt="Sheep">
                             </td>
-                            <td>${res[i].name}</td>
+                            <td>Product Name</td>
                             <td>${res[i].price}</td>
                             <td>
-                                <form action="/CartDetails/Delete/${res[i].id}" method="post">
+                                <form action="/CartDetails/Delete/${res[i].id}" class="delete-cart-item" method="post">
                                     <input type="hidden" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" value="${res[i].id}">
                                     <input type="submit" value="Remove" class="btn btn-sm btn-outline-danger">
-                                      <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EHnw6sAcHNKpaHjALc0pfbhqVMeH2asvqa_Wn-mCnN45uW7u5Sw7RmtSSgaGcrrM5j1pNRX8gYlo0_eYuprH7oOMfLxFTrIyMe1pLqOqYfq7VX4wDDTRWFmBWq1gRpdVQxEy2F4WiNMH5E2dP8ewxzAcH7_EoW4qAW5fxRg_Cdmt7WK2dqcne3oACzQJwVJRQ">
                                 </form>
                             </td>
                         </tr>`;
@@ -142,6 +144,30 @@ $(function () {
                 }
                 table.html(content);
                 $('#total').html(total);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    });
+});
+
+//Delete Cart Item
+$(function () {
+    $(".delete-cart-item").submit(function (e) {
+        e.preventDefault();
+        let url = $(this).attr("action");
+        let data = $(this).serialize();
+        let item = $(this);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function (res) {
+                if (res.id != null) {
+                    item.parents(".cart-item").remove();
+                } else {
+                    alert("Error");
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
             }
