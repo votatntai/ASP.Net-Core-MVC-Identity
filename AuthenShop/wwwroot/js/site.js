@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 // Write your JavaScript code.
 
-//Ajax for Login
+//Login
 $(function () {
     let form = $("#account");
     form.on('submit', function (e) {
@@ -42,6 +42,7 @@ $(function () {
     });
 });
 
+//Resend Email
 $(function () {
     let form = $("#resend-email");
     form.on('submit', function (e) {
@@ -77,10 +78,76 @@ $(function () {
     });
 });
 
-/*Google Button*/
-$("#external-account button[value = 'Google']").attr('class', 'btn btn-block text-white').css("background-color", "#dd5044");
+//Add To Cart
+$(function () {
+    let form = $("#add-to-cart");
+    form.on('submit', function (e) {
+        e.preventDefault();
+        let url = form.attr("action");
+        let data = form.serialize();
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function (res, text, xhr) {
+                if (xhr.status === 200) {
+                    if (xhr.responseText.includes("Success")) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Successful',
+                            text: 'This product has been added to your cart',
+                            confirmButtonText: 'Continue',
+                            scrollbarPadding: false,
+                        });
+                    }
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    });
+});
 
-/*Custom Clothes Price*/
-$(document).ready(function () {
-    console.log($('.price').text().slice(1, 3));
-})
+//Shopping Cart
+$(function () {
+    $(".cart").click(function (e) {
+        e.preventDefault();
+        let url = location.origin + "/CartDetails";
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            success: function (res, text, xhr) {
+                console.log(res);
+                const table = $(".render-product");
+                let content = "";
+                let total = 0;
+                for (var i = 0; i < res.length; i++) {
+                    const row = ` <tr>
+                            <td class="w-25">
+                                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/vans.png" class="img-fluid img-thumbnail" alt="Sheep">
+                            </td>
+                            <td>${res[i].name}</td>
+                            <td>${res[i].price}</td>
+                            <td>
+                                <form action="/CartDetails/Delete/${res[i].id}" method="post">
+                                    <input type="hidden" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" value="${res[i].id}">
+                                    <input type="submit" value="Remove" class="btn btn-sm btn-outline-danger">
+                                      <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EHnw6sAcHNKpaHjALc0pfbhqVMeH2asvqa_Wn-mCnN45uW7u5Sw7RmtSSgaGcrrM5j1pNRX8gYlo0_eYuprH7oOMfLxFTrIyMe1pLqOqYfq7VX4wDDTRWFmBWq1gRpdVQxEy2F4WiNMH5E2dP8ewxzAcH7_EoW4qAW5fxRg_Cdmt7WK2dqcne3oACzQJwVJRQ">
+                                </form>
+                            </td>
+                        </tr>`;
+                    content += row;
+                    total += res[i].price;
+                }
+                table.html(content);
+                $('#total').html(total);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    });
+});
+
+//Google Button
+$("#external-account button[value = 'Google']").attr('class', 'btn btn-block text-white').css("background-color", "#dd5044");

@@ -8,7 +8,7 @@ namespace AuthenShop.Entities
         [Required]
         public int Id { get; set; }
 
-        [MaxLength(18)]
+        [MaxLength(50)]
         [Required]
         public string Title { get; set; }
 
